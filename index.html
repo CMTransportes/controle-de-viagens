@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CM Transportes - Criar Solicitação de Monitoramento</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        header {
+            background-color: white;
+            color: #003366; /* Azul mais escuro */
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        header img {
+            height: 80px;
+            margin-right: 20px;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+            color: #003366; /* Azul mais escuro */
+        }
+        main {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #003366; /* Azul mais escuro */
+        }
+        input, select, button, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .navigation {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .navigation a {
+            padding: 10px 20px;
+            background-color: #003366; /* Azul mais escuro */
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        .navigation a:hover {
+            background-color: #001a33; /* Azul ainda mais escuro ao passar o mouse */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="imagens/logo.png" alt="Logo CM Transportes" />
+        <h1>CRIAR SOLICITAÇÃO DE MONITORAMENTO</h1>
+    </header>
+    <main>
+        <form id="solicitacaoForm">
+            <label for="placa">Placa:</label>
+            <input type="text" id="placa" name="placa" placeholder="Digite a placa do veículo" required>
+            
+            <label for="motorista">Motorista:</label>
+            <input type="text" id="motorista" name="motorista" placeholder="Nome do motorista" required>
+            
+            <label for="origem">Origem:</label>
+            <input type="text" id="origem" name="origem" placeholder="Local de origem" required>
+            
+            <label for="destino">Destino:</label>
+            <input type="text" id="destino" name="destino" placeholder="Local de destino" required>
+            
+            <label for="previsao">Previsão de Início:</label>
+            <input type="datetime-local" id="previsao" name="previsao" required>
+
+            <label for="statusCarregamento">Status de Carga:</label>
+            <select id="statusCarregamento" name="statusCarregamento" required>
+                <option value="Vazio">Vazio</option>
+                <option value="Carregado">Carregado</option>
+            </select>
+            
+            <label for="observacao">Observação:</label>
+            <textarea id="observacao" name="observacao" placeholder="Adicione observações sobre a viagem"></textarea>
+            
+            <button type="submit">Salvar Solicitação</button>
+        </form>
+
+        <div class="navigation">
+            <a href="controle.html">Ir para Controle de Viagens</a>
+        </div>
+    </main>
+
+    <script>
+        function getNextId() {
+            let currentId = localStorage.getItem('currentId');
+            if (!currentId) {
+                currentId = 100;
+                localStorage.setItem('currentId', currentId);
+            } else {
+                currentId = parseInt(currentId) + 1;
+                localStorage.setItem('currentId', currentId);
+            }
+            return currentId;
+        }
+
+        document.getElementById('solicitacaoForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const id = getNextId(); // Gera o ID único para a solicitação
+
+            const solicitacao = {
+                id: id, // Adiciona o ID à solicitação
+                placa: document.getElementById('placa').value,
+                motorista: document.getElementById('motorista').value,
+                origem: document.getElementById('origem').value,
+                destino: document.getElementById('destino').value,
+                previsao: document.getElementById('previsao').value,
+                status: 'Aguardando Início',
+                statusCarregamento: document.getElementById('statusCarregamento').value, // Captura o status de carga
+                observacao: document.getElementById('observacao').value // Captura a observação
+            };
+
+            let solicitacoes = JSON.parse(localStorage.getItem('planos')) || [];
+            solicitacoes.push(solicitacao);
+            localStorage.setItem('planos', JSON.stringify(solicitacoes));
+
+            alert('Solicitação de monitoramento salva com sucesso!');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

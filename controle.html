@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Viagens</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #333;
+        }
+        section {
+            margin-bottom: 40px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            background-color: #003366;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+        .actions button {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: #003366; /* Azul mais escuro */
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        .actions button:hover {
+            background-color: #001a33; /* Azul ainda mais escuro */
+        }
+        .navigation {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .navigation a {
+            padding: 10px 20px;
+            background-color: #003366; /* Azul mais escuro */
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        .navigation a:hover {
+            background-color: #001a33; /* Azul ainda mais escuro */
+        }
+    </style>
+</head>
+<body>
+    <h1>Controle de Viagens</h1>
+
+    <section>
+        <h2>Aguardando Início</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Status de Carga</th>
+                    <th>Placa</th>
+                    <th>Motorista</th>
+                    <th>Origem</th>
+                    <th>Destino</th>
+                    <th>Previsão de Início</th>
+                    <th>Observação</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="tabelaAguardando">
+                <!-- Linhas geradas dinamicamente -->
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>Em Viagem</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Status de Carga</th>
+                    <th>Placa</th>
+                    <th>Motorista</th>
+                    <th>Origem</th>
+                    <th>Destino</th>
+                    <th>Previsão de Início</th>
+                    <th>Observação</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="tabelaEmViagem">
+                <!-- Linhas geradas dinamicamente -->
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>Viagem Finalizada</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Status de Carga</th>
+                    <th>Placa</th>
+                    <th>Motorista</th>
+                    <th>Origem</th>
+                    <th>Destino</th>
+                    <th>Previsão de Início</th>
+                    <th>Data de Finalização</th>
+                    <th>Observação</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="tabelaFinalizada">
+                <!-- Linhas geradas dinamicamente -->
+            </tbody>
+        </table>
+    </section>
+
+    <div class="navigation">
+        <a href="index.html">Voltar para Registro</a>
+    </div>
+
+    <script src="controle.js"></script>
+</body>
+</html>
